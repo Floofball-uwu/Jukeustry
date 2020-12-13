@@ -1,0 +1,10 @@
+{
+  "name": "jukebox-mod",
+  "displayName": "Jukebox Mod",
+  "author": "Darth Farmer Sans Thanos",
+  "description": "A mod that adds, you guessed it, [yellow] JUKEBOXES! [white] Dont expect them to shoot... or?",
+  "version": "1.0",
+  "minGameVersion": "121.00",
+  "dependencies": [],
+  "hidden": false
+}

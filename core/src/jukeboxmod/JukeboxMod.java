@@ -1,5 +1,4 @@
-package main;
-
+package jukeboxmod;
 
 import arc.*;
 import arc.util.*;
