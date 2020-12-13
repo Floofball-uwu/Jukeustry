@@ -44,26 +44,26 @@ libs/arc-core.jar:
 	sha1sum -c $@.sha1
 	@rm $@.sha1
 
-build: JukeboxMod-Desktop.jar
-android: build JukeboxMod.jar
+build: jukeboxmod-Desktop.jar
+android: build jukeboxmod.jar
 
 build/classes/%.class: src/%.java libs
 	@printf "\033[32m> JAVAC\033[0m\t%s\n" $@
 	@mkdir -p `dirname $@`
 	$(JAVAC) $(JAVACFLAGS) $< -d build/classes
 
-JukeboxMod-Desktop.jar: $(classes) $(assets)
+jukeboxmod-Desktop.jar: $(classes) $(assets)
 	@printf "\033[33m> JAR\033[0m\t%s\n" $@
 	jar -cf $@ $(JARFLAGS) || rm $@
 
-JukeboxMod.jar: JukeboxMod-Desktop.jar
+jukeboxmod.jar: jukeboxmod-Desktop.jar
 	@printf "\033[33m> D8\033[0m\t%s\n" $@
 	$(D8) $(D8FLAGS) --output build $^
 	cp JukeboxMod-Desktop.jar $@
 	cd build; zip -qg ../$@ classes.dex
 
 install: build
-	cp JukeboxMod-Desktop.jar $(MINDUSTRY)/mods
+	cp jukeboxmod-Desktop.jar $(MINDUSTRY)/mods
 
 clean:
 	rm -rf build/classes
@@ -74,9 +74,9 @@ reset:
 help:
 	@printf "\033[97;1mAvailable tasks:\033[0m\n"
 	@printf "\t\033[32mbuild\033[0m\n"
-	@printf "\t  Compile the mod into \033[97;1m%s\033[0m\n" JukeboxMod-Desktop.jar
+	@printf "\t  Compile the mod into \033[97;1m%s\033[0m\n" jukeboxmod-Desktop.jar
 	@printf "\t\033[32mandroid \033[90m(default)\033[0m\n"
-	@printf "\t  Dex the mod into \033[91;1m%s\033[0m\n" JukeboxMod.jar
+	@printf "\t  Dex the mod into \033[91;1m%s\033[0m\n" jukeboxmod.jar
 	@printf "\t  Compatible with PC and Android.\n"
 	@printf "\t\033[32minstall\033[0m\n"
 	@printf "\t  Install the desktop version to \033[97;1m%s\033[0m\n" $(MINDUSTRY)
