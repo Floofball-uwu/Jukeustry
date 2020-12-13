@@ -21,7 +21,7 @@ D8 := d8
 D8FLAGS := --min-api 14
 
 # Mindustry + arc version to link against
-version := v120
+version := v121
 
 all: android
 
