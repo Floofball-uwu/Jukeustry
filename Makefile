@@ -59,7 +59,7 @@ JukeboxMod-Desktop.jar: $(classes) $(assets)
 JukeboxMod.jar: JukeboxMod-Desktop.jar
 	@printf "\033[33m> D8\033[0m\t%s\n" $@
 	$(D8) $(D8FLAGS) --output build $^
-	cp ExampleJavaMod-Desktop.jar $@
+	cp JukeboxMod-Desktop.jar $@
 	cd build; zip -qg ../$@ classes.dex
 
 install: build
