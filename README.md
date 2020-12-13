@@ -1,5 +1,7 @@
-# Mindustry Mod Template
-A blank template for Mindustry mods with an existing Gradle configuration to compile and dex-ify.
+# Jukebox Mod
+Adds jukeboxes to the game. Thats it. May or may not add more in the future.
+
+
 
 ## Compiling
 JDK 8.
