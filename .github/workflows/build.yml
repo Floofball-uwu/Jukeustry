@@ -16,7 +16,7 @@ jobs:
       with:
         java-version: 14
     - name: Build mod
-      run: make -j$(nproc)
+      run: make -j$(nproc); ls -A
 
     - name: Upload jars
       uses: actions/upload-artifact@v2
