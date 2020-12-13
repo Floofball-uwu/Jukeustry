@@ -1,8 +1,8 @@
-package sonnicon.modtemplate;
+package main;
 
 import mindustry.mod.Mod;
 
-public class ModTemplate extends Mod{
+public class JukeboxMod extends Mod{
 
     @Override
     public void init(){
