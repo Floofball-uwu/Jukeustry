@@ -1,4 +1,4 @@
-package jukeboxmod.content;
+package jukeustry.content;
 
 import arc.*;
 import arc.graphics.*;
@@ -31,7 +31,7 @@ import mindustry.world.consumers.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 
-import static jukeboxmod.content.JukeItems.jukeboxite;
+import static jukeustry.content.JukeItems.jukeboxite;
 import static mindustry.content.Fx.*;
 import static mindustry.type.ItemStack.*;
 
