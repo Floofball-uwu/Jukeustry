@@ -10,12 +10,12 @@ import mindustry.mod.*;
 import mindustry.ui.dialogs.*;
 
 public class Jukeustry extends Mod{
-
-    @Override
-    public void init(){
+    public Jukeustry(){
+        Log.info("Loaded Jukeustry constructor");
     }
 
     @Override
     public void loadContent(){
+        Log.info("Loading Jukeustry content");
     }
 }
