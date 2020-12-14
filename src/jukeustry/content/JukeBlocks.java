@@ -44,7 +44,7 @@ public class JukeBlocks implements ContentList{
 
     @Override
     public void load(){
-        jukeboxiteSmelter = new GenericSmelter("jukeboxiteSmelter"){{
+        jukeboxiteSmelter = new GenericSmelter("jukeboxite-smelter"){{
             requirements(Category.production, BuildVisibility.shown, with(Items.lead, 165, Items.graphite, 65, Items.silicon, 45, Items.titanium, 110));
             size = 3;
             health = 300;
