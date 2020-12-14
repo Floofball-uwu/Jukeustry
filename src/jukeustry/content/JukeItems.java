@@ -1,4 +1,4 @@
-package jukeboxmod.content;
+package jukeustry.content;
 
 
 import arc.graphics.*;
