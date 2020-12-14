@@ -9,13 +9,29 @@ import mindustry.gen.*;
 import mindustry.mod.*;
 import mindustry.ui.dialogs.*;
 
-public class Jukeustry extends Mod{
+    private final ContentList[] contents = {
+        new JukeBlocks()
+    };
+    public boolean isDebug = false;
+    
     public Jukeustry(){
-        Log.info("Loaded Jukeustry constructor");
+        Events.on(ClientLoadEvent.class, e -> {
+            Time.runTask(5f, () -> {
+                Log.info(Core.bundle.get("startup"));
+            });
+        });
     }
-
+    
+    @Override
+    public void init(){
+        Vars.enableConsole = true;
+    }
+    
     @Override
     public void loadContent(){
-        Log.info("Loading Jukeustry content");
+        for(ContentList content : contents){
+            content.load();
+            Log.info("Loaded content: @", content.getClass().getSimpleName());
+        }
     }
 }
