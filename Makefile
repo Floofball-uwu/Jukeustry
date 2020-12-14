@@ -59,7 +59,7 @@ Jukeustry-Desktop.jar: $(classes) $(assets)
 Jukeustry.jar: Jukeustry-Desktop.jar
 	@printf "\033[33m> D8\033[0m\t%s\n" $@
 	$(D8) $(D8FLAGS) --output build $^
-	cp JukeboxMod-Desktop.jar $@
+	cp Jukeustry-Desktop.jar $@
 	cd build; zip -qg ../$@ classes.dex
 
 install: build
