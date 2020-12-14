@@ -23,5 +23,5 @@ jobs:
       with:
         name: Desktop and Universal builds
         path: |
-          JukeboxMod-Desktop.jar#
-          JukeboxMod.jar
+          Jukeustry-Desktop.jar#
+          Jukeustry.jar
