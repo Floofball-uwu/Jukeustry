@@ -1,4 +1,4 @@
-package jukeboxmod;
+package jukeustry;
 
 import arc.*;
 import arc.util.*;
@@ -9,7 +9,7 @@ import mindustry.gen.*;
 import mindustry.mod.*;
 import mindustry.ui.dialogs.*;
 
-public class JukeboxMod extends Mod{
+public class Jukeustry extends Mod{
 
     @Override
     public void init(){
