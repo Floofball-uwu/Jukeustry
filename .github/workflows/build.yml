@@ -1,9 +1,6 @@
 name: Deployment
 
-on:
-  push:
-    tags:
-      - 'v*'
+on: [push]
 
 jobs:
   buildJava14:
