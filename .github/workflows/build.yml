@@ -23,5 +23,5 @@ jobs:
       with:
         name: Desktop and Universal builds
         path: |
-          ExampleJavaMod-Desktop.jar#
-          ExampleJavaMod.jar
+          JukeboxMod-Desktop.jar#
+          JukeboxMod.jar
