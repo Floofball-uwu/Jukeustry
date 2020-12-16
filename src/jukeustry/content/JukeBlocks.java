@@ -38,14 +38,13 @@ import static mindustry.type.ItemStack.*;
 
 public class JukeBlocks implements ContentList{
     public static Block
-
     //production
     jukeboxiteSmelter;
 
     @Override
     public void load(){
         jukeboxiteSmelter = new GenericSmelter("jukeboxite-smelter"){{
-            requirements(Category.production, BuildVisibility.shown, with(Items.lead, 165, Items.graphite, 65, Items.silicon, 45, Items.titanium, 110));
+            requirements(Category.crafting, BuildVisibility.shown, with(Items.lead, 165, Items.graphite, 65, Items.silicon, 45, Items.titanium, 110));
             size = 3;
             health = 300;
             hasPower = true;

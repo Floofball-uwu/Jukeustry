@@ -5,15 +5,13 @@ import arc.scene.style.TextureRegionDrawable;
 import arc.scene.ui.Dialog;
 import arc.scene.ui.layout.Table;
 import arc.util.*;
-import jukeustry.content.JukeBlocks;
-import jukeustry.content.JukeItems;
-import mindustry.*;
-import mindustry.content.*;
-import mindustry.game.EventType.*;
 import mindustry.gen.*;
 import mindustry.graphics.Pal;
 import mindustry.mod.*;
 import mindustry.ui.dialogs.*;
+
+import jukeustry.content.JukeBlocks;
+import jukeustry.content.JukeItems;
 
    public class Jukeustry extends Mod {
 	   public static final String jukeustryName = "jukeustry-";
@@ -51,5 +49,6 @@ import mindustry.ui.dialogs.*;
 		new JukeItems().load();
 		new JukeBlocks().load();
 
+		Log.info("Loaded Jukeustry content.");
 	   }
 }
