@@ -12,6 +12,7 @@ import mindustry.ui.dialogs.*;
 
 import jukeustry.content.JukeBlocks;
 import jukeustry.content.JukeItems;
+import jukeustry.content.JukeBlocksSpecial.jukeboxiteSmelter;
 
    public class Jukeustry extends Mod {
 	   public static final String jukeustryName = "jukeustry-";
@@ -48,8 +49,6 @@ import jukeustry.content.JukeItems;
 
 		new JukeItems().load();
 		new JukeBlocks().load();
-		
-		new jukeboxiteSmelter().load();
 		
 		Log.info("Loaded Jukeustry content.");
 	   }
