@@ -18,7 +18,7 @@ public class jukeboxiteSmelter extends GenericSmelter {
     @Override
     public void load(){
         super.load();
-        colorRegion = Core.atlas.find(name + "-color");
+        colorRegion = Core.atlas.find("jukeboxite-smelter-color");
     }
 
     public class JukeboxBuild extends SmelterBuild {
