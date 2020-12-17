@@ -48,7 +48,9 @@ import jukeustry.content.JukeItems;
 
 		new JukeItems().load();
 		new JukeBlocks().load();
-
+		
+		new jukeboxiteSmelter().load();
+		
 		Log.info("Loaded Jukeustry content.");
 	   }
 }
