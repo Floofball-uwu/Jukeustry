@@ -4,12 +4,11 @@ import arc.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.util.*;
-import mindustry.gen.*;
 import mindustry.world.*;
 import mindustry.world.blocks.production.GenericSmelter;
 import mindustry.world.blocks.production.GenericSmelter.SmelterBuild;
 
-public class jukeboxiteSmelter extends Block{
+public class jukeboxiteSmelter extends GenericSmelter {
     public TextureRegion colorRegion;
 
     public jukeboxiteSmelter(String name) {
@@ -22,13 +21,13 @@ public class jukeboxiteSmelter extends Block{
         colorRegion = Core.atlas.find(name + "-color");
     }
 
-    public class JukeboxBuild extends Building {
+    public class JukeboxBuild extends SmelterBuild {
 
         @Override
         public void draw(){
             super.draw();
 
-            Draw.color(Tmp.c1.set(Color.valueOf("ff0000")).shiftHue(Time.time));
+            Draw.color(Color.valueOf("ff0000").shiftHue(Time.time));
             Draw.rect(colorRegion, x, y);
         }
     }
