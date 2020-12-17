@@ -29,6 +29,7 @@ public class jukeboxiteSmelter extends GenericSmelter {
 
             Draw.color(Color.valueOf("ff0000").shiftHue(Time.time));
             Draw.rect(colorRegion, x, y);
+            Draw.reset();
         }
     }
 }
