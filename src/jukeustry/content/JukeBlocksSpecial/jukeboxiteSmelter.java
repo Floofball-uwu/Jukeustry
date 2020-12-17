@@ -26,8 +26,9 @@ public class jukeboxiteSmelter extends Block{
         public void draw(){
             super.draw();
 
-            Draw.color(Color.valueOf("ff0000").shiftHue(Time.time));
-            Draw.rect(colorRegion, this.x, this.y);
+            Draw.color(Tmp.c1.set(Color.valueOf("ff0000")).shiftHue(Time.time));
+            Draw.rect(colorRegion, x, y);
+            Draw.reset();
         }
     }
 }
