@@ -1,5 +1,5 @@
 //Sprite must be white or grayscale
-const block = extendContent([blocktype], "name of block without .json", {
+const block = extendContent(GenericSmelter, "jukeboxite-smelter", {
   load(){
     this.super$load();
     this.colorRegion = Core.atlas.find(this.name + "-color");
