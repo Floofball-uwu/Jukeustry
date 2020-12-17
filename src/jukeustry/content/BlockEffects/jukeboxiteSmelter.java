@@ -1,12 +1,10 @@
-package jukeustry.content.JukeBlocksEffects;
+package jukeustry.content.BlockEffects;
 
 import arc.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.util.*;
-import mindustry.world.*;
 import mindustry.world.blocks.production.GenericSmelter;
-import mindustry.world.blocks.production.GenericSmelter.SmelterBuild;
 
 public class jukeboxiteSmelter extends GenericSmelter {
     public TextureRegion colorRegion;
