@@ -1,1 +1,1 @@
-require("JukeboxiteSmelter");
+require("jukeboxiteSmelter");
