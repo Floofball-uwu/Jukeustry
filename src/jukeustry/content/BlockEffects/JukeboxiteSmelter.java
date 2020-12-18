@@ -14,7 +14,7 @@ public class JukeboxiteSmelter extends GenericSmelter {
     }
 
     @Override
-    public void load(){
+    public void load() {
         super.load();
         colorRegion = Core.atlas.find(name + "-color");
         Log.info("Jukeboxite colorRegion set and loaded");
@@ -23,7 +23,7 @@ public class JukeboxiteSmelter extends GenericSmelter {
     public class JukeboxBuild extends SmelterBuild {
 
         @Override
-        public void draw(){
+        public void draw() {
 
             Draw.color(Color.valueOf("ff0000").shiftHue(Time.time));
             Draw.rect(colorRegion, tile.drawx(), tile.drawy());
