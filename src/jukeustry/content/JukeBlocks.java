@@ -1,6 +1,7 @@
 package jukeustry.content;
 
 import arc.util.Log;
+import jukeustry.content.BlockEffects.JukeboxiteSmelter;
 import mindustry.content.Items;
 import mindustry.ctype.*;
 import mindustry.type.*;
@@ -21,7 +22,7 @@ public class JukeBlocks implements ContentList {
     @Override
     public void load() {
         Log.info("Jukeboxite Smelter here.");
-        jukeboxiteSmelter = new GenericSmelter("jukeboxite-smelter") {{
+        jukeboxiteSmelter = new JukeboxiteSmelter("jukeboxite-smelter") {{
             requirements(Category.crafting, BuildVisibility.shown, with(Items.lead, 165, Items.graphite, 65, Items.silicon, 45, Items.titanium, 110));
             size = 3;
             health = 300;
