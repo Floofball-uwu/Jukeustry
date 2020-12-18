@@ -4,6 +4,7 @@ import arc.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.struct.*;
+import arc.util.Log;
 import arc.util.Time;
 import mindustry.*;
 import mindustry.content.Fx;
@@ -44,6 +45,7 @@ public class JukeBlocks implements ContentList{
 
     @Override
     public void load(){
+        Log.info("Jukeboxite Smelter here.");
         jukeboxiteSmelter = new GenericSmelter("jukeboxite-smelter"){{
             requirements(Category.crafting, BuildVisibility.shown, with(Items.lead, 165, Items.graphite, 65, Items.silicon, 45, Items.titanium, 110));
             size = 3;
@@ -59,6 +61,7 @@ public class JukeBlocks implements ContentList{
 
             consumes.power(1.7f);
             consumes.items(with(Items.copper, 4, Items.titanium, 1, Items.metaglass, 2));
+
         }};
     }
 }

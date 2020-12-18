@@ -6,10 +6,10 @@ import arc.graphics.g2d.*;
 import arc.util.*;
 import mindustry.world.blocks.production.GenericSmelter;
 
-public class jukeboxiteSmelter extends GenericSmelter {
+public class JukeboxiteSmelter extends GenericSmelter {
     public TextureRegion colorRegion;
 
-    public jukeboxiteSmelter(String name) {
+    public JukeboxiteSmelter(String name) {
         super(name);
     }
 
@@ -17,6 +17,7 @@ public class jukeboxiteSmelter extends GenericSmelter {
     public void load(){
         super.load();
         colorRegion = Core.atlas.find(name + "-color");
+        Log.info("Jukeboxite colorRegion set and loaded");
     }
 
     public class JukeboxBuild extends SmelterBuild {
@@ -24,11 +25,10 @@ public class jukeboxiteSmelter extends GenericSmelter {
         @Override
         public void draw(){
 
-            System.out.println("ohnoohnohonohonohononhonhonohnoho");
-
-            //Draw.color(Color.valueOf("#ff000000ff").shiftHue(Time.time));
-            Draw.color(Color.valueOf("#ffbbffbb").set(255f, 255f, 0f, 255f));
+            Draw.color(Color.valueOf("ff0000").shiftHue(Time.time));
             Draw.rect(colorRegion, tile.drawx(), tile.drawy());
+
+            Log.info("RGB has loaded. Does it work?");
         }
     }
 }
