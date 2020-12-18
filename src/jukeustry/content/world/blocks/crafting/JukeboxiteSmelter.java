@@ -1,4 +1,4 @@
-package jukeustry.content.BlockEffects;
+package jukeustry.content.world.blocks.crafting;
 
 import arc.*;
 import arc.graphics.*;
@@ -17,7 +17,6 @@ public class JukeboxiteSmelter extends GenericSmelter {
     public void load() {
         super.load();
         colorRegion = Core.atlas.find(name + "-color");
-        Log.info("Jukeboxite colorRegion set and loaded");
     }
 
     public class JukeboxBuild extends SmelterBuild {
@@ -27,8 +26,6 @@ public class JukeboxiteSmelter extends GenericSmelter {
 
             Draw.color(Color.valueOf("ff0000").shiftHue(Time.time));
             Draw.rect(colorRegion, tile.drawx(), tile.drawy());
-
-            Log.info("RGB has loaded. Does it work?");
         }
     }
 }
