@@ -3,7 +3,7 @@ plugins {
 }
 
 //todo nice way of fetching from CI/CD
-final buildFilename = "build.gradle"
+final buildFilename = "Jukeustry.jar"
 
 group 'farmerthanos'
 
