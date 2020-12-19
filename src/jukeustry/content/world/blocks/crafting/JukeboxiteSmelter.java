@@ -8,6 +8,7 @@ import mindustry.world.blocks.production.GenericSmelter;
 
 public class JukeboxiteSmelter extends GenericSmelter {
     public TextureRegion colorRegion;
+    public TextureRegion baseSprite;
 
     public JukeboxiteSmelter(String name) {
         super(name);
@@ -17,6 +18,7 @@ public class JukeboxiteSmelter extends GenericSmelter {
     public void load() {
         super.load();
         colorRegion = Core.atlas.find(name + "-color");
+        baseSprite = Core.atlas.find(name);
     }
 
     public class JukeboxBuild extends SmelterBuild {
@@ -24,8 +26,9 @@ public class JukeboxiteSmelter extends GenericSmelter {
         @Override
         public void draw() {
 
-            Draw.color(Color.valueOf("ff0000").shiftHue(Time.time));
-            Draw.rect(colorRegion, tile.drawx(), tile.drawy());
+            Draw.rect(baseSprite, x, y);
+            Draw.color(Color.valueOf("ff0000").shiftHue(Time.time()));
+            Draw.rect(colorRegion, x, y);
         }
     }
 }
