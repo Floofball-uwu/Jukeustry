@@ -21,7 +21,7 @@ public class JukeboxiteSmelter extends GenericSmelter {
         baseSprite = Core.atlas.find(name);
     }
 
-    public class JukeboxBuild extends SmelterBuild {
+    public class JukeboxiteSmelterBuild extends SmelterBuild {
 
         @Override
         public void draw() {
