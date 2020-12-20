@@ -48,6 +48,7 @@ public class JukeboxBlock extends Block {
 
 
     public class JukeboxBuild extends Building {
+        //Change item to track. Probably need to create a track class
         public @Nullable Item sortItem;
 
         @Override
