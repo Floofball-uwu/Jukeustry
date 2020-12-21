@@ -1,35 +1,24 @@
 package jukeustry.content.world.blocks.logic;
 
 import arc.Core;
+import arc.audio.Music;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.TextureRegion;
-import arc.util.Nullable;
+import arc.struct.ObjectMap;
+import arc.struct.Seq;
 import mindustry.gen.Building;
+import mindustry.gen.Musics;
 import mindustry.world.*;
 import mindustry.world.meta.*;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class JukeboxBlock extends Block {
-
-    public int track1;
-    public int track2;
-    public int track3;
-    public int track4;
-    public int track5;
-    public int track6;
-    public int track7;
-    public int track8;
-    public int track9;
-    public int track10;
-    public int track11;
-    public int track12;
-    public int track13;
-    public int track14;
-    public int track15;
-    public int track16;
-
     public TextureRegion baseSprite;
+
+    public String tracks;
+
+    String[] tracksCon = tracks.split(" ", 16);
 
     public JukeboxBlock(String name) {
 
@@ -47,9 +36,10 @@ public class JukeboxBlock extends Block {
     }
 
 
+    public HashMap<Integer, Track> trackList = new HashMap<Integer, Track>();
+    Music t1 = new Track(track1);
+
     public class JukeboxBuild extends Building {
-        //Change item to track. Probably need to create a track class
-        public @Nullable Item sortItem;
 
         @Override
         public void draw() {

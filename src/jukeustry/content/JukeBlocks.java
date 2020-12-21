@@ -1,5 +1,7 @@
 package jukeustry.content;
 
+import arc.assets.loaders.MusicLoader;
+import arc.audio.Music;
 import jukeustry.content.world.blocks.crafting.JukeboxiteSmelter;
 import jukeustry.content.world.blocks.logic.JukeboxBlock;
 import mindustry.content.Items;
@@ -9,6 +11,7 @@ import mindustry.world.*;
 import mindustry.world.meta.*;
 
 import static jukeustry.content.JukeItems.jukeboxite;
+import static jukeustry.content.JukeMusic.*;
 import static mindustry.content.Fx.*;
 import static mindustry.type.ItemStack.*;
 
@@ -45,6 +48,7 @@ public class JukeBlocks implements ContentList {
             size = 2;
             health = 160;
 
+            //track1 = S1W1;
         }};
     }
 }
