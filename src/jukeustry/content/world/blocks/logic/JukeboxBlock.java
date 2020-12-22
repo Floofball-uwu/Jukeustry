@@ -4,21 +4,16 @@ import arc.Core;
 import arc.audio.Music;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.TextureRegion;
-import arc.struct.ObjectMap;
-import arc.struct.Seq;
+import arc.scene.ui.layout.Table;
 import mindustry.gen.Building;
-import mindustry.gen.Musics;
+import mindustry.gen.Icon;
 import mindustry.world.*;
 import mindustry.world.meta.*;
-
-import java.util.HashMap;
 
 public class JukeboxBlock extends Block {
     public TextureRegion baseSprite;
 
-    public String tracks;
-
-    String[] tracksCon = tracks.split(" ", 16);
+    public Music[] tracks = {};
 
     public JukeboxBlock(String name) {
 
@@ -36,15 +31,22 @@ public class JukeboxBlock extends Block {
     }
 
 
-    public HashMap<Integer, Track> trackList = new HashMap<Integer, Track>();
-    Music t1 = new Track(track1);
-
     public class JukeboxBuild extends Building {
 
         @Override
         public void draw() {
             Draw.rect(baseSprite, x, y);
+
         }
+
+        @Override
+        public void buildConfiguration(Table table) {
+            table.button(Icon.pencil, () -> {
+
+                deselect();
+            }).size(40f);
+        }
+
     }
 
     //Make cool jukeboxy UI here. Also finish class to allow for choosing what sound files to

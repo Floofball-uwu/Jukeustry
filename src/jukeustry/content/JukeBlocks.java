@@ -48,7 +48,7 @@ public class JukeBlocks implements ContentList {
             size = 2;
             health = 160;
 
-            //track1 = S1W1;
+            tracks = new Music[]{S1W1, S1W2};
         }};
     }
 }
