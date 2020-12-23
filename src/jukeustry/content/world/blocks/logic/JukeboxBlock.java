@@ -10,6 +10,7 @@ import arc.util.io.Writes;
 import mindustry.gen.Building;
 import mindustry.gen.Icon;
 import mindustry.world.*;
+import mindustry.world.blocks.ItemSelection;
 import mindustry.world.meta.*;
 
 public class JukeboxBlock extends Block {
@@ -42,12 +43,10 @@ public class JukeboxBlock extends Block {
         }
 
         @Override
-        public void buildConfiguration(Table table) {
-            table.button(Icon.pencil, () -> {
+        public void buildConfiguration() {
 
-                deselect();
-            }).size(40f);
         }
+
 
         @Override
         public Object config(){

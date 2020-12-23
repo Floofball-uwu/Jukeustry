@@ -9,5 +9,6 @@
   "hidden": false,
   "hasScripts": false,
   "hasJava": true,
-  "main": "jukeustry.Jukeustry"
+  "main": "jukeustry.Jukeustry",
+  "repo": "FarmerThanos/Jukeustry"
 }
