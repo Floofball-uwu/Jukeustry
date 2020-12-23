@@ -5,6 +5,8 @@ import arc.audio.Music;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.TextureRegion;
 import arc.scene.ui.layout.Table;
+import arc.util.io.Reads;
+import arc.util.io.Writes;
 import mindustry.gen.Building;
 import mindustry.gen.Icon;
 import mindustry.world.*;
@@ -32,11 +34,11 @@ public class JukeboxBlock extends Block {
 
 
     public class JukeboxBuild extends Building {
+        public int currentTrack = 0;
 
         @Override
         public void draw() {
             Draw.rect(baseSprite, x, y);
-
         }
 
         @Override
@@ -47,6 +49,26 @@ public class JukeboxBlock extends Block {
             }).size(40f);
         }
 
+        @Override
+        public Object config(){
+            return currentTrack;
+        }
+
+        @Override
+        public void readAll(Reads read, byte revision){
+            super.readAll(read, revision);
+
+            if(revision == 1){
+                enabled = read.bool();
+            }
+        }
+
+        @Override
+        public void write(Writes write){
+            super.write(write);
+
+            write.i(1);
+        }
     }
 
     //Make cool jukeboxy UI here. Also finish class to allow for choosing what sound files to
