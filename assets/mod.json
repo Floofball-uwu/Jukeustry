@@ -1,11 +1,13 @@
 {
-"name": "jukeustry",
-"displayName": "Jukeustry",
-"author": "Farmer Thanos",
-"description": "A mod that adds, you guessed it, [yellow] JUKEBOXES! [white] Dont expect them to shoot... or?",
-"version": "0.1",
-"minGameVersion": "121.00",
-"dependencies": [],
-"hidden": false,
-"main": "jukeustry.Jukeustry"
+  "name": "jukeustry",
+  "displayName": "Jukeustry",
+  "author": "Farmer Thanos",
+  "description": "A mod that adds, you guessed it, [yellow] JUKEBOXES! [white] Dont expect them to shoot... or?",
+  "version": "0.1",
+  "minGameVersion": "121.00",
+  "dependencies": [],
+  "hidden": false,
+  "hasScripts": false,
+  "hasJava": true,
+  "main": "jukeustry.Jukeustry"
 }
