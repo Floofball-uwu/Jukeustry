@@ -9,6 +9,7 @@ import arc.util.io.Writes;
 import jukeustry.content.JukeMusic;
 import mindustry.gen.Building;
 import mindustry.gen.LogicIO;
+import mindustry.gen.Musics;
 import mindustry.world.*;
 import mindustry.world.meta.*;
 
@@ -76,8 +77,7 @@ public class JukeboxBlock extends Block {
                 playlist.put(16, tracks[15]);
             }
             Music toPlay = playlist.get(trackSelect);
-            JukeMusic.load();
-            S1W1.play();
+            Musics.boss1.play();
 
         }
         /*

@@ -39,10 +39,10 @@ public class JukeboxiteSmelter extends GenericSmelter {
                 float cr = Mathf.random(0.1F);
                 Draw.alpha((1.0F - g + Mathf.absin(Time.time, 8.0F, g) + Mathf.random(r) - r) * this.warmup);
                 Draw.tint(JukeboxiteSmelter.this.flameColor);
-                Fill.circle(this.x, this.y, 3.0F + Mathf.absin(Time.time, 5.0F, 2.0F) + cr);
+                Fill.circle(x, y, 3.0F + Mathf.absin(Time.time, 5.0F, 2.0F) + cr);
                 Draw.color(1.0F, 1.0F, 1.0F, this.warmup);
-                Draw.rect(JukeboxiteSmelter.this.topRegion, this.x, this.y);
-                Fill.circle(this.x, this.y, 1.9F + Mathf.absin(Time.time, 5.0F, 1.0F) + cr);
+                Draw.rect(JukeboxiteSmelter.this.topRegion, x, y);
+                Fill.circle(x, y, 1.9F + Mathf.absin(Time.time, 5.0F, 1.0F) + cr);
                 Draw.color();
             }
         }
