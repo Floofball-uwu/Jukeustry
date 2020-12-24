@@ -12,6 +12,7 @@ import mindustry.world.blocks.production.GenericSmelter;
 public class JukeboxiteSmelter extends GenericSmelter {
     public TextureRegion colorRegion;
     public TextureRegion baseSprite;
+    public Color flameColor = Color.valueOf("ffc999");
 
     public JukeboxiteSmelter(String name) {
         super(name);
@@ -27,9 +28,11 @@ public class JukeboxiteSmelter extends GenericSmelter {
     }
 
     public class JukeboxiteSmelterBuild extends SmelterBuild {
-
         @Override
         public void draw() {
+            Draw.rect(baseSprite, x, y);
+            Draw.color(Color.valueOf("bb0000").shiftHue(Time.time));
+            Draw.rect(colorRegion, x, y);
             if (this.warmup > 0.0F && JukeboxiteSmelter.this.flameColor.a > 0.001F) {
                 float g = 0.3F;
                 float r = 0.06F;
@@ -42,9 +45,6 @@ public class JukeboxiteSmelter extends GenericSmelter {
                 Fill.circle(this.x, this.y, 1.9F + Mathf.absin(Time.time, 5.0F, 1.0F) + cr);
                 Draw.color();
             }
-            Draw.rect(baseSprite, x, y);
-            Draw.color(Color.valueOf("bb0000").shiftHue(Time.time));
-            Draw.rect(colorRegion, x, y);
         }
         @Override
         public void drawLight() {
