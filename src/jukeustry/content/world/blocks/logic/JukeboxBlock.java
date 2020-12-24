@@ -1,27 +1,24 @@
 package jukeustry.content.world.blocks.logic;
 
 import arc.Core;
-import arc.audio.Music;
+import arc.audio.Sound;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.TextureRegion;
 import arc.util.io.Reads;
 import arc.util.io.Writes;
-import jukeustry.content.JukeMusic;
+import jukeustry.content.JukeSounds;
 import mindustry.gen.Building;
 import mindustry.gen.LogicIO;
-import mindustry.gen.Musics;
+import mindustry.gen.Sounds;
 import mindustry.world.*;
 import mindustry.world.meta.*;
 
 import java.util.HashMap;
 
-import static jukeustry.content.JukeMusic.S1W1;
-import static mindustry.gen.Musics.boss1;
-
 public class JukeboxBlock extends Block {
     public TextureRegion baseSprite;
 
-    public Music[] tracks = {};
+    public Sound[] tracks = {};
 
     public JukeboxBlock(String name) {
 
@@ -53,7 +50,7 @@ public class JukeboxBlock extends Block {
             LogicIO.write("control", logicInputA);
             String logicInputB = logicInputA.toString();
             int trackSelect = Integer.parseInt(logicInputB);
-            HashMap<Integer, Music> playlist = new HashMap<Integer, Music>();
+            HashMap<Integer, Sound> playlist = new HashMap<Integer, Sound>();
 
             if (trackSelect == -1) {
                 //switch loop
@@ -77,9 +74,9 @@ public class JukeboxBlock extends Block {
                 playlist.put(15, tracks[14]);
                 playlist.put(16, tracks[15]);
             }
-            Music toPlay = playlist.get(trackSelect);
-            Musics.load();
-            boss1.play();
+            Sound toPlay = playlist.get(trackSelect);
+            JukeSounds.load();
+            JukeSounds.S1W1.at(this.x, this.y);
 
         }
         /*
