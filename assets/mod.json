@@ -7,7 +7,5 @@
   "minGameVersion": "121.00",
   "dependencies": [],
   "hidden": false,
-  "hasScripts": false,
-  "hasJava": true,
   "main": "jukeustry.Jukeustry"
 }

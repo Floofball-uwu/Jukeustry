@@ -9,8 +9,6 @@ import arc.util.io.Writes;
 import jukeustry.content.JukeMusic;
 import mindustry.gen.Building;
 import mindustry.gen.LogicIO;
-import mindustry.gen.Musics;
-import mindustry.gen.Sounds;
 import mindustry.world.*;
 import mindustry.world.meta.*;
 
@@ -82,7 +80,7 @@ public class JukeboxBlock extends Block {
             S1W1.play();
 
         }
-        /* LAssembler.customParsers.put LogicIO.allStatements.add
+        /*
         Probably need to make custom logic component for jukebox control. Logic component must have:
         Integer input for track selection
         Boolean input for loop
