@@ -4,14 +4,19 @@ import arc.Core;
 import arc.audio.Music;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.TextureRegion;
-import arc.scene.ui.layout.Table;
 import arc.util.io.Reads;
 import arc.util.io.Writes;
+import jukeustry.content.JukeMusic;
 import mindustry.gen.Building;
-import mindustry.gen.Icon;
+import mindustry.gen.LogicIO;
+import mindustry.gen.Musics;
+import mindustry.gen.Sounds;
 import mindustry.world.*;
-import mindustry.world.blocks.ItemSelection;
 import mindustry.world.meta.*;
+
+import java.util.HashMap;
+
+import static jukeustry.content.JukeMusic.S1W1;
 
 public class JukeboxBlock extends Block {
     public TextureRegion baseSprite;
@@ -42,28 +47,63 @@ public class JukeboxBlock extends Block {
             Draw.rect(baseSprite, x, y);
         }
 
-        @Override
         public void buildConfiguration() {
+            StringBuilder logicInputA = new StringBuilder();
+
+            LogicIO.write("control", logicInputA);
+            String logicInputB = logicInputA.toString();
+            int trackSelect = Integer.parseInt(logicInputB);
+            HashMap<Integer, Music> playlist = new HashMap<Integer, Music>();
+
+            if (trackSelect == -1) {
+                //switch loop
+            } else if (trackSelect == 0) {
+                //stop music
+            } else {
+                playlist.put(1, tracks[0]);
+                playlist.put(2, tracks[1]);
+                playlist.put(3, tracks[2]);
+                playlist.put(4, tracks[3]);
+                playlist.put(5, tracks[4]);
+                playlist.put(6, tracks[5]);
+                playlist.put(7, tracks[6]);
+                playlist.put(8, tracks[7]);
+                playlist.put(9, tracks[8]);
+                playlist.put(10, tracks[9]);
+                playlist.put(11, tracks[10]);
+                playlist.put(12, tracks[11]);
+                playlist.put(13, tracks[12]);
+                playlist.put(14, tracks[13]);
+                playlist.put(15, tracks[14]);
+                playlist.put(16, tracks[15]);
+            }
+            Music toPlay = playlist.get(trackSelect);
+            JukeMusic.load();
+            S1W1.play();
 
         }
-
+        /* LAssembler.customParsers.put LogicIO.allStatements.add
+        Probably need to make custom logic component for jukebox control. Logic component must have:
+        Integer input for track selection
+        Boolean input for loop
+         */
 
         @Override
-        public Object config(){
+        public Object config() {
             return currentTrack;
         }
 
         @Override
-        public void readAll(Reads read, byte revision){
+        public void readAll(Reads read, byte revision) {
             super.readAll(read, revision);
 
-            if(revision == 1){
+            if (revision == 1) {
                 enabled = read.bool();
             }
         }
 
         @Override
-        public void write(Writes write){
+        public void write(Writes write) {
             super.write(write);
 
             write.i(1);

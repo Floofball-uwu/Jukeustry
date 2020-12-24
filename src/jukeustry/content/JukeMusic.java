@@ -37,16 +37,53 @@ public class JukeMusic {
     }
 
     public static Music
-            S1W1,
-            S1W2;
+            //DOOM Episode 1
+            S1W1, S1W2, S1W3, S1W4, S1W5, S1W6, S1W7, S1W8, S1W9,
+            //DOOM Episode 2
+            S2W1, S2W2, S2W3, S2W4,
+            //DOOM Episode 3
+            //Other
+            TTDAW;
 
     public static void load() {
+        //DOOM Episode 1
         S1W1 = loadMusic("S1W1");
         S1W2 = loadMusic("S1W2");
+        S1W3 = loadMusic("S1W3");
+        S1W4 = loadMusic("S1W4");
+        S1W5 = loadMusic("S1W5");
+        S1W6 = loadMusic("S1W6");
+        S1W7 = loadMusic("S1W7");
+        S1W8 = loadMusic("S1W8");
+        S1W9 = loadMusic("S1W9");
+        //DOOM Episode 2
+        S2W1 = loadMusic("S2W1");
+        S2W2 = loadMusic("S2W2");
+        S2W3 = loadMusic("S2W3");
+        S2W4 = loadMusic("S2W4");
+        //Doom Episode 3
+        //Other
+        TTDAW = loadMusic("TTDAW");
     }
 
     public static void dispose() {
+        //DOOM Episode 1
         S1W1 = disposeMusic("S1W1");
         S1W2 = disposeMusic("S1W2");
+        S1W3 = disposeMusic("S1W3");
+        S1W4 = disposeMusic("S1W4");
+        S1W5 = disposeMusic("S1W5");
+        S1W6 = disposeMusic("S1W6");
+        S1W7 = disposeMusic("S1W7");
+        S1W8 = disposeMusic("S1W8");
+        S1W9 = disposeMusic("S1W9");
+        //DOOM Episode 2
+        S2W1 = disposeMusic("S2W1");
+        S2W2 = disposeMusic("S2W2");
+        S2W3 = disposeMusic("S2W3");
+        S2W4 = disposeMusic("S2W4");
+        //DOOM Episode 3
+        //Other
+        TTDAW = disposeMusic("TTDAW");
     }
 }
