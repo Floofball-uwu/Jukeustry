@@ -16,6 +16,7 @@ import mindustry.world.meta.*;
 import java.util.HashMap;
 
 import static jukeustry.content.JukeMusic.S1W1;
+import static mindustry.gen.Musics.boss1;
 
 public class JukeboxBlock extends Block {
     public TextureRegion baseSprite;
@@ -77,7 +78,8 @@ public class JukeboxBlock extends Block {
                 playlist.put(16, tracks[15]);
             }
             Music toPlay = playlist.get(trackSelect);
-            Musics.boss1.play();
+            Musics.load();
+            boss1.play();
 
         }
         /*
