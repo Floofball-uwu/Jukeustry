@@ -9,7 +9,12 @@ import arc.util.io.Writes;
 import jukeustry.content.JukeSounds;
 import mindustry.gen.Building;
 import mindustry.gen.LogicIO;
-import mindustry.gen.Sounds;
+import mindustry.logic.LAssembler;
+import mindustry.logic.LExecutor;
+import mindustry.logic.LStatement;
+import mindustry.logic.LStatement.*;
+import mindustry.logic.LStatements;
+import mindustry.logic.LStatements.*;
 import mindustry.world.*;
 import mindustry.world.meta.*;
 
@@ -17,7 +22,6 @@ import java.util.HashMap;
 
 public class JukeboxBlock extends Block {
     public TextureRegion baseSprite;
-
     public Sound[] tracks = {};
 
     public JukeboxBlock(String name) {
@@ -35,22 +39,21 @@ public class JukeboxBlock extends Block {
         baseSprite = Core.atlas.find(name);
     }
 
+    HashMap<Integer, Sound> playlist = new HashMap<Integer, Sound>();
 
     public class JukeboxBuild extends Building {
-        public int currentTrack = 0;
+        public int currentTrack = 1;
 
         @Override
         public void draw() {
             Draw.rect(baseSprite, x, y);
         }
 
-        public void buildConfiguration() {
-            StringBuilder logicInputA = new StringBuilder();
+        public Object config() {
+            LAssembler.customParsers.put("control", (p1)-> new ControlStatement());
+            LogicIO.allStatements.add(ControlStatement::new);
 
-            LogicIO.write("control", logicInputA);
-            String logicInputB = logicInputA.toString();
-            int trackSelect = Integer.parseInt(logicInputB);
-            HashMap<Integer, Sound> playlist = new HashMap<Integer, Sound>();
+            int trackSelect = 1;
 
             if (trackSelect == -1) {
                 //switch loop
@@ -78,17 +81,13 @@ public class JukeboxBlock extends Block {
             JukeSounds.load();
             JukeSounds.S1W1.at(this.x, this.y);
 
+            return currentTrack;
         }
         /*
         Probably need to make custom logic component for jukebox control. Logic component must have:
         Integer input for track selection
         Boolean input for loop
          */
-
-        @Override
-        public Object config() {
-            return currentTrack;
-        }
 
         @Override
         public void readAll(Reads read, byte revision) {
