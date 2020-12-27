@@ -9,11 +9,8 @@ import arc.util.io.Writes;
 import jukeustry.content.JukeSounds;
 import mindustry.gen.Building;
 import mindustry.gen.LogicIO;
-import mindustry.logic.LAssembler;
-import mindustry.logic.LExecutor;
-import mindustry.logic.LStatement;
+import mindustry.logic.*;
 import mindustry.logic.LStatement.*;
-import mindustry.logic.LStatements;
 import mindustry.logic.LStatements.*;
 import mindustry.world.*;
 import mindustry.world.meta.*;
@@ -43,17 +40,16 @@ public class JukeboxBlock extends Block {
 
     public class JukeboxBuild extends Building {
         public int currentTrack = 1;
+        public int trackSelect = 1;
 
         @Override
         public void draw() {
             Draw.rect(baseSprite, x, y);
         }
 
-        public Object config() {
-            LAssembler.customParsers.put("control", (p1)-> new ControlStatement());
-            LogicIO.allStatements.add(ControlStatement::new);
-
-            int trackSelect = 1;
+        public void configure() {
+            //LAssembler.customParsers.put("control", (p1)-> new ControlStatement());
+            //LogicIO.allStatements.add(ControlStatement::new);
 
             if (trackSelect == -1) {
                 //switch loop
@@ -77,11 +73,10 @@ public class JukeboxBlock extends Block {
                 playlist.put(15, tracks[14]);
                 playlist.put(16, tracks[15]);
             }
+            currentTrack = trackSelect;
             Sound toPlay = playlist.get(trackSelect);
             JukeSounds.load();
             JukeSounds.S1W1.at(this.x, this.y);
-
-            return currentTrack;
         }
         /*
         Probably need to make custom logic component for jukebox control. Logic component must have:
@@ -90,19 +85,17 @@ public class JukeboxBlock extends Block {
          */
 
         @Override
-        public void readAll(Reads read, byte revision) {
-            super.readAll(read, revision);
-
-            if (revision == 1) {
-                enabled = read.bool();
-            }
-        }
-
-        @Override
         public void write(Writes write) {
             super.write(write);
 
-            write.i(1);
+            write.i(trackSelect);
+        }
+
+        @Override
+        public void read(Reads read) {
+            super.read(read);
+
+            this.currentTrack = read.i();
         }
     }
 
