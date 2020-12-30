@@ -81,21 +81,21 @@ public class JukeboxBlock extends Block {
                 JukeSounds.S1W1.at(this.x, this.y);
             }
         }
+
+        @Override
+        public void write(Writes write) {
+            super.write(write);
+
+            write.d(trackSelect);
+        }
+
+        @Override
+        public void read(Reads read, byte revision) {
+            super.read(read, revision);
+
+            trackSelect = read.f();
+        }
     }
-
-    /*@Override
-    public void write(Writes write) {
-        super.write(write);
-
-        write.double(trackSelect);
-    }
-
-    @Override
-    public void read(Reads read) {
-        super.read(read);
-
-        trackSelect = read.i();
-    } */
 }
 
 //Make cool jukeboxy UI here. Also finish class to allow for choosing what sound files to
