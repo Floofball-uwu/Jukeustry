@@ -1,7 +1,5 @@
 package jukeustry.content;
 
-import arc.audio.Music;
-import arc.audio.Sound;
 import jukeustry.content.world.blocks.crafting.JukeboxiteSmelter;
 import jukeustry.content.world.blocks.logic.JukeboxBlock;
 import mindustry.content.Items;
@@ -11,7 +9,7 @@ import mindustry.world.*;
 import mindustry.world.meta.*;
 
 import static jukeustry.content.JukeItems.jukeboxite;
-import static jukeustry.content.JukeSounds.*;
+import static jukeustry.content.JukeMusic.*;
 import static mindustry.content.Fx.*;
 import static mindustry.type.ItemStack.*;
 
@@ -20,9 +18,8 @@ public class JukeBlocks implements ContentList {
     public static Block
             //production
             jukeboxiteSmelter,
-
     //logic
-    jukeboxDoom;
+    jukeboxDoomE1;
 
     @Override
     public void load() {
@@ -43,7 +40,7 @@ public class JukeBlocks implements ContentList {
             consumes.items(with(Items.copper, 4, Items.titanium, 1, Items.metaglass, 2));
         }};
 
-        jukeboxDoom = new JukeboxBlock("jukebox-doom") {{
+        jukeboxDoomE1 = new JukeboxBlock("jukebox-doom-e1") {{
             requirements(Category.logic, BuildVisibility.shown, with(JukeItems.jukeboxite, 130, Items.copper, 200, Items.lead, 170, Items.silicon, 80, Items.graphite, 100));
             size = 2;
             health = 160;

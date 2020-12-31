@@ -8,10 +8,10 @@ import arc.audio.Music;
 import arc.audio.Sound;
 import mindustry.Vars;
 
-public class JukeSounds {
+public class JukeMusic {
     protected static Music loadMusic(String musicName) {
         if (!Vars.headless) {
-            String name = "assets/music/" + musicName;
+            String name = "music/" + musicName;
             String path = name + ".ogg";
 
             Music music = new Music();
@@ -27,7 +27,7 @@ public class JukeSounds {
 
     protected static Music disposeMusic(String musicName) {
         if (!Vars.headless) {
-            String name = "assets/music/" + musicName;
+            String name = "music/" + musicName;
             String path = name + ".ogg";
 
             if (Core.assets.isLoaded(path, Music.class)) {

@@ -6,15 +6,15 @@ import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.TextureRegion;
 import arc.math.Mathf;
 import arc.util.Log;
+import arc.util.Nullable;
 import arc.util.io.Reads;
 import arc.util.io.Writes;
-import jukeustry.content.JukeSounds;
+import jukeustry.content.JukeMusic;
 import mindustry.gen.Building;
 import mindustry.logic.*;
 import mindustry.world.*;
 import mindustry.world.meta.*;
 
-import static jukeustry.content.JukeSounds.S1W1;
 import static mindustry.logic.LAccess.*;
 
 import java.util.HashMap;
@@ -32,6 +32,8 @@ public class JukeboxBlock extends Block {
         group = BlockGroup.logic;
     }
 
+    config(JukeMusic.class,(JukeboxBuild tile, Music music) ->tile.sortItem =item);
+
     @Override
     public void load() {
         Log.info("Debug: JukeboxBlock loaded 2");
@@ -42,8 +44,10 @@ public class JukeboxBlock extends Block {
     HashMap<Integer, Music> playlist = new HashMap<Integer, Music>();
 
     public class JukeboxBuild extends Building {
-        public double trackSelect = 0;
-        public boolean trackLoop = false;
+        public @Nullable
+        double trackSelect = 0;
+        public @Nullable
+        boolean trackLoop = false;
 
         @Override
         public void draw() {
@@ -55,6 +59,7 @@ public class JukeboxBlock extends Block {
             if (sensor == LAccess.configure) return trackSelect;
             return super.sense(sensor);
         }
+
         @Override
         public void control(LAccess type, double p1, double p2, double p3, double p4) {
             Log.info("Debug: control() loaded 3");
@@ -85,14 +90,14 @@ public class JukeboxBlock extends Block {
                     playlist.put(16, tracks[15]);
                 }
                 Music toPlay = playlist.get(trackSelect);
-                JukeSounds.load();
+                JukeMusic.load();
                 toPlay.play();
                 Log.info("Debug: playlist loaded 4");
             }
         }
 
         @Override
-        public Double config(){
+        public Double config() {
             return trackSelect;
         }
 

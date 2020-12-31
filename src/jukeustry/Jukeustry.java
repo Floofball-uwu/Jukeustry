@@ -2,7 +2,7 @@ package jukeustry;
 
 import arc.Events;
 import arc.util.*;
-import jukeustry.content.JukeSounds;
+import jukeustry.content.JukeMusic;
 import mindustry.game.EventType;
 import mindustry.mod.*;
 
@@ -13,10 +13,10 @@ public class Jukeustry extends Mod {
     public static final String jukeustryName = "jukeustry-";
 
     public Jukeustry() {
-        JukeSounds.load();
+        JukeMusic.load();
 
         Events.on(EventType.DisposeEvent.class, e -> {
-            JukeSounds.dispose();
+            JukeMusic.dispose();
         });
     }
 
