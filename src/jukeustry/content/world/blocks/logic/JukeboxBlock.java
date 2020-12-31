@@ -1,10 +1,11 @@
 package jukeustry.content.world.blocks.logic;
 
 import arc.Core;
-import arc.audio.Sound;
+import arc.audio.Music;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.TextureRegion;
 import arc.math.Mathf;
+import arc.util.Log;
 import arc.util.io.Reads;
 import arc.util.io.Writes;
 import jukeustry.content.JukeSounds;
@@ -13,17 +14,18 @@ import mindustry.logic.*;
 import mindustry.world.*;
 import mindustry.world.meta.*;
 
+import static jukeustry.content.JukeSounds.S1W1;
 import static mindustry.logic.LAccess.*;
 
 import java.util.HashMap;
 
 public class JukeboxBlock extends Block {
     public TextureRegion baseSprite;
-    public Sound[] tracks = {};
+    public Music[] tracks = {};
 
     public JukeboxBlock(String name) {
-
         super(name);
+        Log.info("Debug: Loading JukboxBlock 1");
         update = true;
         solid = true;
         configurable = true;
@@ -32,16 +34,16 @@ public class JukeboxBlock extends Block {
 
     @Override
     public void load() {
+        Log.info("Debug: JukeboxBlock loaded 2");
         super.load();
         baseSprite = Core.atlas.find(name);
     }
 
-    HashMap<Integer, Sound> playlist = new HashMap<Integer, Sound>();
+    HashMap<Integer, Music> playlist = new HashMap<Integer, Music>();
 
     public class JukeboxBuild extends Building {
         public double trackSelect = 0;
         public boolean trackLoop = false;
-
 
         @Override
         public void draw() {
@@ -49,13 +51,19 @@ public class JukeboxBlock extends Block {
         }
 
         @Override
+        public double sense(LAccess sensor) {
+            if (sensor == LAccess.configure) return trackSelect;
+            return super.sense(sensor);
+        }
+        @Override
         public void control(LAccess type, double p1, double p2, double p3, double p4) {
+            Log.info("Debug: control() loaded 3");
             if (type == configure) {
                 trackSelect = p1;
-                trackLoop = !Mathf.zero(p2);
+                boolean trackLoop = false;
 
                 if (trackSelect == -1) {
-                    //switch loop
+                    trackLoop = !Mathf.zero(p1);
                 } else if (trackSelect == 0) {
                     //stop music
                 } else {
@@ -76,10 +84,16 @@ public class JukeboxBlock extends Block {
                     playlist.put(15, tracks[14]);
                     playlist.put(16, tracks[15]);
                 }
-                Sound toPlay = playlist.get(trackSelect);
+                Music toPlay = playlist.get(trackSelect);
                 JukeSounds.load();
-                JukeSounds.S1W1.at(this.x, this.y);
+                toPlay.play();
+                Log.info("Debug: playlist loaded 4");
             }
+        }
+
+        @Override
+        public Double config(){
+            return trackSelect;
         }
 
         @Override
@@ -97,10 +111,3 @@ public class JukeboxBlock extends Block {
         }
     }
 }
-
-//Make cool jukeboxy UI here. Also finish class to allow for choosing what sound files to
-//play based on an int array from 0 (stop sound) to 16. Should allow for easy customization.
-
-//Assign "track1", "track2", "track3", etc. to a numerical array. The tracks will be names of
-//soundfile tracks (inputted in JukeBlocks.java), but calculated with integers for logic compatibility
-//and flexibility.
