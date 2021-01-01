@@ -1,6 +1,8 @@
 # Jukebox Mod
 Adds jukeboxes to the game. Thats it. May or may not add more in the future.
 
+This mod is a valid and working java example mod.
+
 # JSON
 Theoretical JSON support should already exist.
 
