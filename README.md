@@ -1,11 +1,8 @@
 # Jukebox Mod
 Adds jukeboxes to the game. Thats it. May or may not add more in the future.
 
-## Plans
-1. Make make the Jukebox type work at all and be able to play a sound on demand.
-2. Make it possible to have multiple sounds in one block and be controlled by logic.
-3. Add sound range, so music can be heard at any distance and be controlled by logic.
+# JSON
+Theoretical JSON support should already exist.
 
-
-### Mindustry Java Library
-To get access to the Mindustry Java Library, copy the build.gradle code, and replace [jukeustry] with the name you need to use.
+*
+Check out [JSkbox](https://github.com/QmelZ/JSkebox) by [Qmelz](https://github.com/QmelZ) if you are interested in a JS jukebox.
