@@ -45,7 +45,7 @@ public class JukeBlocks implements ContentList {
             size = 2;
             health = 160;
 
-            tracks = new arc.audio.Music[]{S1W1, S1W2};
+            tracks = new arc.audio.Music[]{S1W1, S1W2, S1W3, S1W4};
         }};
     }
 }

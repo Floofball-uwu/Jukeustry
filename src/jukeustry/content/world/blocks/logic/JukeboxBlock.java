@@ -5,19 +5,29 @@ import arc.audio.Music;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.TextureRegion;
 import arc.math.Mathf;
+import arc.scene.style.TextureRegionDrawable;
+import arc.scene.ui.layout.Table;
 import arc.util.Log;
 import arc.util.Nullable;
 import arc.util.io.Reads;
 import arc.util.io.Writes;
 import jukeustry.content.JukeMusic;
 import mindustry.gen.Building;
+import mindustry.gen.Unit;
 import mindustry.logic.*;
+import mindustry.ui.Styles;
 import mindustry.world.*;
 import mindustry.world.meta.*;
 
+import static jukeustry.content.JukeMusic.S1W1;
+import static mindustry.Vars.headless;
+import static mindustry.Vars.renderer;
 import static mindustry.logic.LAccess.*;
 
 import java.util.HashMap;
+
+//Make HASHMAP that adds new playlist.put() depending on tracks input count
+
 
 public class JukeboxBlock extends Block {
     public TextureRegion baseSprite;
@@ -32,8 +42,6 @@ public class JukeboxBlock extends Block {
         group = BlockGroup.logic;
     }
 
-    config(JukeMusic.class,(JukeboxBuild tile, Music music) ->tile.sortItem =item);
-
     @Override
     public void load() {
         Log.info("Debug: JukeboxBlock loaded 2");
@@ -45,13 +53,93 @@ public class JukeboxBlock extends Block {
 
     public class JukeboxBuild extends Building {
         public @Nullable
-        double trackSelect = 0;
+        double trackSelect = 1;
         public @Nullable
         boolean trackLoop = false;
+        boolean trackPaused = true;
+        Music toPlay = tracks[(int)Math.round(trackSelect)-1];
 
         @Override
         public void draw() {
             Draw.rect(baseSprite, x, y);
+        }
+
+
+        @Override
+        public void configured(Unit player, Object value){
+            super.configured(player, value);
+
+            if(!headless){
+                renderer.minimap.update(tile);
+            }
+        }
+
+        @Override
+        public void buildConfiguration(Table table){
+            table.button(new TextureRegionDrawable(Core.atlas.find("jukeustry-skip-backward-icon")),
+                    Styles.clearTransi,
+                    () -> {
+                        toPlay.stop();
+                        trackSelect--;
+                        if(trackSelect < 1){
+                            trackSelect = 1;
+                        } else {
+                            toPlay = tracks[((int) Math.round(trackSelect) - 1)];
+                        }
+                        toPlay.play();
+                    });
+            table.button(new TextureRegionDrawable(trackPaused ? Core.atlas.find("jukeustry-pause-icon") : Core.atlas.find("jukeustry-play-icon")),
+                    Styles.clearTransi,
+                    () -> {
+                        if (toPlay.isPlaying()){
+                            toPlay.pause(true);
+                            trackPaused = true;
+                        } else {
+                            toPlay.play();
+                            trackPaused = false;
+                        }
+                    });
+            table.button(new TextureRegionDrawable(Core.atlas.find("jukeustry-skip-forward-icon")),
+                    Styles.clearTransi,
+                    () -> {
+                        toPlay.stop();
+                        trackSelect++;
+                        if(trackSelect > tracks.length){
+                            trackSelect = tracks.length;
+                        } else {
+                            toPlay = tracks[((int) Math.round(trackSelect) - 1)];
+                        }
+                            toPlay.play();
+                    });
+            table.button(new TextureRegionDrawable(trackLoop ? Core.atlas.find("jukeustry-loop-on-icon") : Core.atlas.find("jukeustry-loop-off-icon")),
+                    Styles.clearTransi,
+                    () -> {
+                        if (trackLoop == true) {
+                            trackLoop = false;
+                            toPlay.setLooping(true);
+                        } else {
+                            trackLoop = true;
+                            toPlay.setLooping(false);
+                        }
+                    });
+        }
+        @Override
+        public Double config() {
+            return trackSelect;
+        }
+
+        @Override
+        public void write(Writes write) {
+            super.write(write);
+
+            write.d(trackSelect);
+        }
+
+        @Override
+        public void read(Reads read, byte revision) {
+            super.read(read, revision);
+
+            trackSelect = read.f();
         }
 
         @Override
@@ -72,47 +160,12 @@ public class JukeboxBlock extends Block {
                 } else if (trackSelect == 0) {
                     //stop music
                 } else {
-                    playlist.put(1, tracks[0]);
-                    playlist.put(2, tracks[1]);
-                    playlist.put(3, tracks[2]);
-                    playlist.put(4, tracks[3]);
-                    playlist.put(5, tracks[4]);
-                    playlist.put(6, tracks[5]);
-                    playlist.put(7, tracks[6]);
-                    playlist.put(8, tracks[7]);
-                    playlist.put(9, tracks[8]);
-                    playlist.put(10, tracks[9]);
-                    playlist.put(11, tracks[10]);
-                    playlist.put(12, tracks[11]);
-                    playlist.put(13, tracks[12]);
-                    playlist.put(14, tracks[13]);
-                    playlist.put(15, tracks[14]);
-                    playlist.put(16, tracks[15]);
+                    Music toPlay = playlist.get((int)Math.round(trackSelect));
+                    JukeMusic.load();
+                    toPlay.play();
                 }
-                Music toPlay = playlist.get(trackSelect);
-                JukeMusic.load();
-                toPlay.play();
                 Log.info("Debug: playlist loaded 4");
             }
-        }
-
-        @Override
-        public Double config() {
-            return trackSelect;
-        }
-
-        @Override
-        public void write(Writes write) {
-            super.write(write);
-
-            write.d(trackSelect);
-        }
-
-        @Override
-        public void read(Reads read, byte revision) {
-            super.read(read, revision);
-
-            trackSelect = read.f();
         }
     }
 }

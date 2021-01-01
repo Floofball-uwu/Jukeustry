@@ -3,9 +3,7 @@ package jukeustry.content;
 import arc.Core;
 import arc.assets.AssetDescriptor;
 import arc.assets.loaders.MusicLoader;
-import arc.assets.loaders.SoundLoader;
 import arc.audio.Music;
-import arc.audio.Sound;
 import mindustry.Vars;
 
 public class JukeMusic {
@@ -38,6 +36,15 @@ public class JukeMusic {
         return null;
     }
 
+    /* array: music  (the file names)
+     array: loaded (empty, will have Musics)
+     loop through items in music:
+     add to loaded: loadMusic(item)
+
+     try making this JS into java
+     let music="file1,file2,file3,file4,file5,file6".split(",").map(a=>loadMusic(a))
+     */
+
     public static Music
             //DOOM Episode 1
             S1W1, S1W2, S1W3, S1W4, S1W5, S1W6, S1W7, S1W8, S1W9,
@@ -48,6 +55,7 @@ public class JukeMusic {
             TTDAW;
 
     public static void load() {
+
         //DOOM Episode 1
         S1W1 = loadMusic("S1W1");
         S1W2 = loadMusic("S1W2");
