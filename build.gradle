@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'FarmerThanos'
+group pGroup
 
 sourceSets.main {
     java.srcDir("src/")
@@ -15,17 +15,17 @@ repositories {
 }
 
 dependencies {
-    implementation "com.github.Anuken.Mindustry:core:v122.1"
+    implementation "com.github.Anuken.Mindustry:core:$pMindustryVersion"
 }
 
 jar {
-    archiveFileName.set 'Jukeustry'
+    archiveFileName.set pArtifactFilename
 }
 
 task dexify(type: Jar) {
-    archiveName 'dexed-$Jukeustry'
+    archiveName "dexed-$pArtifactFilename"
 
-    final File jarArtifact = new File(tasks.jar.archiveFile.get().asFile.parent, 'Jukeustry'),
+    final File jarArtifact = new File(tasks.jar.archiveFile.get().asFile.parent, pArtifactFilename),
                dexedArtifact = new File(tasks.dexify.getTemporaryDir(), "dexed.jar")
     doFirst {
         exec {
