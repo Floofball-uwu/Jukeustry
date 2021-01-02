@@ -2,9 +2,9 @@
   "name": "jukeustry",
   "displayName": "Jukeustry",
   "author": "Farmer Thanos",
-  "description": "A mod that adds, you guessed it, [yellow] JUKEBOXES! [white] Dont expect them to shoot... or?",
+  "description": "A mod that adds, you guessed it, JUKEBOXES! Dont expect them to shoot... or?",
   "version": "0.2",
-  "minGameVersion": "121.00",
+  "minGameVersion": "122.00",
   "dependencies": [],
   "hidden": false,
   "main": "jukeustry.Jukeustry"
