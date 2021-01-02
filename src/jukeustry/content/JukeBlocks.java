@@ -19,7 +19,7 @@ public class JukeBlocks implements ContentList {
             //production
             jukeboxiteSmelter,
     //logic
-    jukeboxDoomE1;
+    jukeboxDoom, jukeboxOther;
 
     @Override
     public void load() {
@@ -40,12 +40,20 @@ public class JukeBlocks implements ContentList {
             consumes.items(with(Items.copper, 4, Items.titanium, 1, Items.metaglass, 2));
         }};
 
-        jukeboxDoomE1 = new JukeboxBlock("jukebox-doom-e1") {{
+        jukeboxDoom = new JukeboxBlock("jukebox-doom") {{
             requirements(Category.logic, BuildVisibility.shown, with(JukeItems.jukeboxite, 130, Items.copper, 200, Items.lead, 170, Items.silicon, 80, Items.graphite, 100));
             size = 2;
             health = 160;
 
-            tracks = new arc.audio.Music[]{S1W1, S1W2, S1W3, S1W4};
+            tracks = new arc.audio.Music[]{S1W1, S1W2, S1W3, S1W4, S1W5, S1W6, S1W7, S1W8, S1W9, S2W1, S2W2, S2W3, S2W4};
+        }};
+
+        jukeboxOther = new JukeboxBlock("jukebox-other") {{
+            requirements(Category.logic, BuildVisibility.shown, with(JukeItems.jukeboxite, 130, Items.copper, 200, Items.lead, 170, Items.silicon, 80, Items.graphite, 100));
+            size = 2;
+            health = 160;
+
+            tracks = new arc.audio.Music[]{TTDAW};
         }};
     }
 }
