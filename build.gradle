@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group FarmerThanos
+group 'FarmerThanos'
 
 sourceSets.main {
     java.srcDir("src/")
