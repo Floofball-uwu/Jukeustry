@@ -76,6 +76,10 @@ public class JukeboxBlock extends Block {
 
         @Override
         public void buildConfiguration(Table table){
+            this.rebuild(table);
+        }
+        public void rebuild(Table table){
+            table.clearChildren();
             table.button(new TextureRegionDrawable(Core.atlas.find("jukeustry-skip-backward-icon")),
                     Styles.clearTransi,
                     () -> {
@@ -98,6 +102,7 @@ public class JukeboxBlock extends Block {
                             toPlay.play();
                             trackPaused = false;
                         }
+                        this.rebuild(table);
                     });
             table.button(new TextureRegionDrawable(Core.atlas.find("jukeustry-skip-forward-icon")),
                     Styles.clearTransi,
@@ -109,7 +114,7 @@ public class JukeboxBlock extends Block {
                         } else {
                             toPlay = tracks[((int) Math.round(trackSelect) - 1)];
                         }
-                            toPlay.play();
+                        toPlay.play();
                     });
             table.button(new TextureRegionDrawable(trackLoop ? Core.atlas.find("jukeustry-loop-on-icon") : Core.atlas.find("jukeustry-loop-off-icon")),
                     Styles.clearTransi,
@@ -121,8 +126,10 @@ public class JukeboxBlock extends Block {
                             trackLoop = true;
                             toPlay.setLooping(false);
                         }
+                        this.rebuild(table);
                     });
         }
+
         @Override
         public Double config() {
             return trackSelect;
