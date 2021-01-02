@@ -19,7 +19,7 @@ dependencies {
 }
 
 jar {
-    archiveFileName.set Jukeustry
+    archiveFileName.set "Jukeustry"
 }
 
 task dexify(type: Jar) {
