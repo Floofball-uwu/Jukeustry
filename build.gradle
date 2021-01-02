@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    implementation "com.github.Anuken.Mindustry:core:$pMindustryVersion"
+    implementation "com.github.Anuken.Mindustry:core:v122.1"
 }
 
 jar {
