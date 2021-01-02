@@ -19,13 +19,13 @@ dependencies {
 }
 
 jar {
-    archiveFileName.set Jukeustry
+    archiveFileName.set 'Jukeustry'
 }
 
 task dexify(type: Jar) {
-    archiveName "dexed-$Jukeustry"
+    archiveName 'dexed-$Jukeustry'
 
-    final File jarArtifact = new File(tasks.jar.archiveFile.get().asFile.parent, Jukeustry),
+    final File jarArtifact = new File(tasks.jar.archiveFile.get().asFile.parent, 'Jukeustry'),
                dexedArtifact = new File(tasks.dexify.getTemporaryDir(), "dexed.jar")
     doFirst {
         exec {
