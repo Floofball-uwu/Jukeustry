@@ -4,10 +4,8 @@ import arc.Core;
 import arc.audio.Music;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.TextureRegion;
-import arc.math.Mathf;
 import arc.scene.style.TextureRegionDrawable;
 import arc.scene.ui.layout.Table;
-import arc.util.Log;
 import arc.util.Nullable;
 import arc.util.io.Reads;
 import arc.util.io.Writes;
@@ -19,14 +17,11 @@ import mindustry.ui.Styles;
 import mindustry.world.*;
 import mindustry.world.meta.*;
 
-import static jukeustry.content.JukeMusic.S1W1;
 import static mindustry.Vars.headless;
 import static mindustry.Vars.renderer;
 import static mindustry.logic.LAccess.*;
 
 import java.util.HashMap;
-
-//Make HASHMAP that adds new playlist.put() depending on tracks input count
 
 
 public class JukeboxBlock extends Block {
@@ -35,7 +30,6 @@ public class JukeboxBlock extends Block {
 
     public JukeboxBlock(String name) {
         super(name);
-        Log.info("Debug: Loading JukboxBlock 1");
         update = true;
         solid = true;
         configurable = true;
@@ -44,7 +38,6 @@ public class JukeboxBlock extends Block {
 
     @Override
     public void load() {
-        Log.info("Debug: JukeboxBlock loaded 2");
         super.load();
         baseSprite = Core.atlas.find(name);
     }
@@ -99,6 +92,7 @@ public class JukeboxBlock extends Block {
                             toPlay.pause(true);
                             trackPaused = true;
                         } else {
+                            toPlay.setLooping(trackLoop);
                             toPlay.play();
                             trackPaused = false;
                         }
@@ -121,10 +115,8 @@ public class JukeboxBlock extends Block {
                     () -> {
                         if (trackLoop == true) {
                             trackLoop = false;
-                            toPlay.setLooping(true);
                         } else {
                             trackLoop = true;
-                            toPlay.setLooping(false);
                         }
                         this.rebuild(table);
                     });
@@ -157,21 +149,12 @@ public class JukeboxBlock extends Block {
 
         @Override
         public void control(LAccess type, double p1, double p2, double p3, double p4) {
-            Log.info("Debug: control() loaded 3");
             if (type == configure) {
                 trackSelect = p1;
                 boolean trackLoop = false;
 
-                if (trackSelect == -1) {
-                    trackLoop = !Mathf.zero(p1);
-                } else if (trackSelect == 0) {
-                    //stop music
-                } else {
-                    Music toPlay = playlist.get((int)Math.round(trackSelect));
-                    JukeMusic.load();
+                    Music toPlay = tracks[((int) Math.round(trackSelect) - 1)];
                     toPlay.play();
-                }
-                Log.info("Debug: playlist loaded 4");
             }
         }
     }
