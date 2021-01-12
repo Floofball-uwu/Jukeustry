@@ -48,9 +48,12 @@ public class JukeboxBlock extends Block {
         public @Nullable
         double trackSelect = 1;
         public @Nullable
-        boolean trackLoop = false;
+        int trackLoop = 0;
+        boolean trackLoopB = false;
+        int trackLoopCTRL = 0;
         boolean trackPaused = true;
-        Music toPlay = tracks[(int)Math.round(trackSelect)-1];
+        String loopIcon = "jukeustry-loop-off-icon";
+        Music toPlay = tracks[(int) Math.round(trackSelect) - 1];
 
         @Override
         public void draw() {
@@ -59,26 +62,27 @@ public class JukeboxBlock extends Block {
 
 
         @Override
-        public void configured(Unit player, Object value){
+        public void configured(Unit player, Object value) {
             super.configured(player, value);
 
-            if(!headless){
+            if (!headless) {
                 renderer.minimap.update(tile);
             }
         }
 
         @Override
-        public void buildConfiguration(Table table){
+        public void buildConfiguration(Table table) {
             this.rebuild(table);
         }
-        public void rebuild(Table table){
+
+        public void rebuild(Table table) {
             table.clearChildren();
             table.button(new TextureRegionDrawable(Core.atlas.find("jukeustry-skip-backward-icon")),
                     Styles.clearTransi,
                     () -> {
                         toPlay.stop();
                         trackSelect--;
-                        if(trackSelect < 1){
+                        if (trackSelect < 1) {
                             trackSelect = 1;
                         } else {
                             toPlay = tracks[((int) Math.round(trackSelect) - 1)];
@@ -88,11 +92,11 @@ public class JukeboxBlock extends Block {
             table.button(new TextureRegionDrawable(trackPaused ? Core.atlas.find("jukeustry-pause-icon") : Core.atlas.find("jukeustry-play-icon")),
                     Styles.clearTransi,
                     () -> {
-                        if (toPlay.isPlaying()){
+                        if (toPlay.isPlaying()) {
                             toPlay.pause(true);
                             trackPaused = true;
                         } else {
-                            toPlay.setLooping(trackLoop);
+                            toPlay.setLooping(trackLoopB);
                             toPlay.play();
                             trackPaused = false;
                         }
@@ -103,22 +107,47 @@ public class JukeboxBlock extends Block {
                     () -> {
                         toPlay.stop();
                         trackSelect++;
-                        if(trackSelect > tracks.length){
+                        if (trackSelect > tracks.length) {
                             trackSelect = tracks.length;
                         } else {
                             toPlay = tracks[((int) Math.round(trackSelect) - 1)];
                         }
                         toPlay.play();
                     });
-            table.button(new TextureRegionDrawable(trackLoop ? Core.atlas.find("jukeustry-loop-on-icon") : Core.atlas.find("jukeustry-loop-off-icon")),
+            table.button(new TextureRegionDrawable(Core.atlas.find(loopIcon)),
                     Styles.clearTransi,
                     () -> {
-                        if (trackLoop == true) {
-                            trackLoop = false;
-                        } else {
-                            trackLoop = true;
+                        switch (trackLoopCTRL) {
+                            case 0:
+                                trackLoopB = false;
+                                trackLoop = 0;
+                                trackLoopCTRL = 1;
+                                loopIcon = "jukeustry-loop-off-icon";
+                                break;
+                            case 1:
+                                trackLoopB = false;
+                                trackLoop = 1;
+                                trackLoopCTRL = 2;
+                                loopIcon = "jukeustry-loop-all-icon";
+                                break;
+                            case 2:
+                                trackLoopB = true;
+                                trackLoop = 2;
+                                trackLoopCTRL = 0;
+                                loopIcon = "jukeustry-loop-one-icon";
+                                break;
                         }
-                        this.rebuild(table);
+                        if (!trackPaused && !toPlay.isPlaying()) {
+                            for (int i = 0; i < tracks.length; i++) {
+                                trackSelect++;
+                                if (trackSelect > tracks.length - 1) {
+                                    trackSelect = 0;
+                                }
+                                toPlay = tracks[((int) Math.round(trackSelect) - 1)];
+                                toPlay.play();
+                            }
+                        }
+                            this.rebuild(table);
                     });
         }
 
@@ -153,8 +182,8 @@ public class JukeboxBlock extends Block {
                 trackSelect = p1;
                 boolean trackLoop = false;
 
-                    Music toPlay = tracks[((int) Math.round(trackSelect) - 1)];
-                    toPlay.play();
+                Music toPlay = tracks[((int) Math.round(trackSelect) - 1)];
+                toPlay.play();
             }
         }
     }
