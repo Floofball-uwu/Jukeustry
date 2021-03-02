@@ -28,14 +28,8 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew buildDex
 
-    - name: Upload a Build Artifact (Jukeustry)
+    - name: Upload build artifact
       uses: actions/upload-artifact@v2.2.1
       with:
-        name:  normal
-        path: build/libs/Jukeustry.jar
-
-    - name: Upload a Build Artifact (dexed-Jukeustry)
-      uses: actions/upload-artifact@v2.2.1
-      with:
-        name:  dexed
-        path: build/libs/dexed-Jukeustry.jar
+        name: dexed
+        path: build/libs/dexed-jukeustry.jar
