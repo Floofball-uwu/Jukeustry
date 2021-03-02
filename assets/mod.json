@@ -4,8 +4,9 @@
   "author": "Farmer Thanos",
   "description": "A mod that adds, you guessed it, JUKEBOXES! Don't expect them to shoot... or?",
   "version": "0.3",
-  "minGameVersion": "122.00",
+  "minGameVersion": "125.00",
   "dependencies": [],
   "hidden": false,
-  "main": "jukeustry.Jukeustry"
+  "main": "jukeustry.Jukeustry",
+  "java": true
 }
